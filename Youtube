@@ -1,0 +1,29 @@
+<!-- Advanced player with simple custom controls. Replace VIDEO_ID -->
+<div id="player"></div>
+<div style="margin-top:8px;">
+  <button id="playBtn">Play</button>
+  <button id="pauseBtn">Pause</button>
+  <button id="stopBtn">Stop</button>
+  <button id="loadBtn">Load another</button>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+let player;
+function onYouTubeIframeAPIReady(){
+  player = new YT.Player('player', {
+    height: '360',
+    width: '640',
+    videoId: 'VIDEO_ID', // initial id
+    playerVars: {rel:0, modestbranding:1},
+    events: {onReady: onPlayerReady}
+  });
+}
+
+function onPlayerReady(e){
+  document.getElementById('playBtn').onclick = ()=> player.playVideo();
+  document.getElementById('pauseBtn').onclick = ()=> player.pauseVideo();
+  document.getElementById('stopBtn').onclick = ()=> { player.stopVideo(); };
+  document.getElementById('loadBtn').onclick = ()=> { player.loadVideoById('ANOTHER_VIDEO_ID'); };
+}
+</script>
